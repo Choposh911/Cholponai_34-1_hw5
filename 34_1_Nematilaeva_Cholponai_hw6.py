@@ -4,6 +4,7 @@ def bubble_sort(number):
         for j in range(0, n - i - 1):
             if number[j] > number[j + 1]:
                 number[j], number[j + 1] = number[j + 1], number[j]
+    return number
 
 
 if __name__ == "__main__":
@@ -12,21 +13,31 @@ if __name__ == "__main__":
     print("Отсортированный список", number)
 
 
-def binary_search(search, number):
-    low, high = 0, len(number) - 1
-    while low <= high:
-        mid = (low + high) // 2
-        if number[mid] == search:
-            return mid
-        elif number[mid] < search:
-            low = mid + 1
+def bubble_sort(val, a):
+    resultOk = False
+    first = 0
+    last = len(a) - 1
+    pos = -1
+    while first < last:
+        mid = (first + last) // 2
+        if val == a[mid]:
+            first = mid
+            last = mid
+            resultOk = True
+            pos = mid
+        elif val > a[mid]:
+            first = mid + 1
         else:
-            high = mid - 1
+            last = mid - 1
 
-    if low <= high:
-        return 'Element searched'
+    if (val == a[first]):
+        resultOk = True
+        pos = first
+    if (resultOk):
+        print("Элемент найден")
+        print(pos)
     else:
-        return 'Element not searched'
+        print("Элемент не найден")
 
 
-print(binary_search(5, [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+bubble_sort(9, [1, 2, 3, 4, 5, 6, 7, 8, 9])
